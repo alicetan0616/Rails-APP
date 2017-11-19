@@ -1,0 +1,39 @@
+<h1><p>Todo List</p></h1>
+
+<table class="table_index">
+
+  <tr class="thead" style="background-color: #F2F2F1;">
+    <td> Due date </td>
+    <td> Title </td>
+    <td> Note </td>
+    <td> Edit / Delete </td>
+    <td> Completed </td>
+  </tr>
+  
+
+  <tr>
+    <% @lists.each do |list| %>   
+      <td> <%= list.date %> </td>
+      <td>  <%= list.title %>  </td>
+      <td>  <%= link_to list_path(list) do %>
+              <div class="icon_style"><i class="fa fa-eye fa-lg" aria-hidden="true"></i></div><% end %></td>        
+      <td>  <%= link_to edit_list_path(list) do %>
+              <div class="icon_style"><i class="fa fa-pencil-square-o fa-lg" aria-hidden="true"></i></div><% end %>
+
+            <% if list.date >= Date.current %>  
+              <%= link_to list_path(list), method: :delete, data:{ confirm: "Are you sure?" } do %>  
+                <div class="icon_style"><i class="fa fa-trash-o fa-lg" aria-hidden="true"></i></div><% end %>
+            <% else %>
+              <div class="icon_style"><i class="fa fa-trash-o fa-lg" aria-hidden="true" style="color:gray"></i></div>
+            <% end %></td>
+
+      <td><%= check_box_tag :completed, true , list.completed, data: { url: completed_list_path(list), method: :post, remote: true } %></td>
+
+  </tr>
+     
+  <% end %>
+</table>
+
+<div style="margin: 50px auto; text-align: center;">
+     <%= link_to '<button type="button" class="buttons_style" style="width: 140px;">CREATE LIST</button>'.html_safe, new_list_path %>
+</div>

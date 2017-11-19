@@ -1,0 +1,37 @@
+
+ <% if @list.errors.present? %>
+    <ul>
+      <% @list.errors.each do |error, message| %>
+        <li class="notice_style">
+          <%= "#{error.capitalize} #{message}" %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+
+<div class="form container">
+  <%= form_for @list do |f| %>
+    <div class="form-group">
+      <%= f.label :title %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :date %>
+      <%= f.date_select :date, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+        <%= f.submit button, class: 'buttons_style' %>
+        <%= link_to '<button type="button" class="buttons_style">BACK</button>'.html_safe, lists_path %>
+    </div>
+  <% end %>
+</div>
+
+  

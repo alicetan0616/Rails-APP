@@ -1,0 +1,22 @@
+<h1><p>Todo List - Note</p></h1>
+
+<div>
+<table class="table_index">
+
+  <tr class="thead" style="background-color: #F2F2F1;">
+    <td style="width: 25%"> Due date </td>
+    <td style="width: 25%"> Title </td>
+    <td style="width: 50%"> Note </td>
+  </tr>
+
+  <tr>
+    <td> <%= @list.date %> </td>
+    <td> <%= @list.title %> </td>
+    <td> <%= simple_format(@list.description) %> </td>
+  </tr>
+</table>
+
+  <div style="text-align: center;">
+    <%= link_to '<button type="button" class="buttons_style">BACK</button>'.html_safe, lists_path %>
+  </div>
+</div>
